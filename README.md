@@ -1,12 +1,37 @@
 # DevOrganizationMaturityLevels
 Describes stages that modern software developer organization have to reach to benefit from the latest trends - like SRE/Platform Engineering/AI assisted Ops/Development
 
-Pre-word
-After failed to successfully implement Internal Developer platform and Observability/SRE principles in several organization I asked why that happen. And below list of oragnization maturity levels may be generalized answer to that.
+## Pre-word
+After failed to successfully implement Internal Developer platform and Observability/SRE principles in several organizations I asked why that happened. 
+Based on research data available in public internet there are certain stages or level of maturity that software development organization has to go through before it needs and can efficiently implement approaches like Platform Engineering and AI adoption.
+And below is a list of oragnization maturity levels may be generalized answer to that.
 
-Case #1. Organization with obsolete stack (18 years old!) and rigid ITISM setup, that relied on ever-changing 3pv contractor to install, integrate and evolve most of their software products (ERP, POS, Cloud Infra). Mostly cargo cult approach. "We hire SRE and started developing DevQA/DevOps standards and that's defenitely has to fix our reliability  abd availability issues, with no stupid clouds, CI/CD pipelines, automated tested, performance testing, unit tests, or docker containers or orchestrators/cluster, NFR, iterative development approaches."
+## Quick ‘local’ examples
+ 
+### IaC separation of concerns
+Organization needs a dedicated team (Infra platform) that will maintain and publish for other teams re-usable infrastructure as a code modules - terraform on aws in our case -  with embedded best practices, no critical or high vulnerabilities, before you can implement platform orchestrator (Humanitec or Harness) and quickly create environments with self-service or scaffolding in Backstage.
 
-Case #2. We need internal developers platform/portal and AI because that might save us from poor engineering practices, no architecture review process, wack-a-mole approach to security. But we still do not maintain IaC terraform modules centrally, we have no SSO in AWS org, we do not have standards,not even minimum observability requirements, SLO/SLI, no deployment stats collections, no platform team, no standard for CI/CD and QA, we use only AWS ECS and believe k8s is too complex for our use-case"
+### Governance
+If there is no tool that will check Infrstructure code compliance to pre-defined and agreed by all teams standards, there is no way to enforce or even check compliance that standard. Such tool could be just a step in CI/CD pipeline that checks terraform code and fail pipeline until critical/high issues are fixed or full-fledged orchestration with Policy checks like Hashicorp Cloud Platform with Waypoint or mentioned above Humanitec/Harness.
+
+### Golden path
+Organization needs a set of tried and tested tech stack combinations to allow quick creation of GitHub repo, standing up new VPC, Environments, ECR, ECS/EKS clusters and RDS/Secrets/Parameters/Lambdas/S3 buckets and related observability and development artefacts.
+
+### FinOps
+Tagging of cloud resources has to be mandatory for every production and non-prod publci cloud resource before you can go and extract FinOps cost data through AWS Cost Explorer API. 
+
+### Standard Compliance
+Similar with CI/CD pipeline, before you can measure each repo compliance (and build on top of that team's compliance scorecard) you have to define standard CI/CD pipeline and several standard scalable cluster versions (ECS, EKS, serverless). 
+
+### Reliability/SRE
+Similar with DORA metrics - to get insight into reliability/velocity balance of the specific microservice one needs data collected by each deployment/release, incidents, ticketing system (jira in our case). And to measure SLI, error budget SLO has to be defined and downtime measured with some metrics of log collection system (DataDog in our case) and even before that KPI has to be defined at an application requirements development stage (non-functional requirements NFR) and then relevant metrics exposed for pull collection or pushed into observability system.
+
+
+## Case #1
+Organization with obsolete stack (18 years old!) and rigid ITISM setup, that relied on ever-changing 3pv contractor to install, integrate and evolve most of their software products (ERP, POS, Cloud Infra). Mostly cargo cult approach. "We hire SRE and started developing DevQA/DevOps standards and that's defenitely has to fix our reliability  abd availability issues, with no stupid clouds, CI/CD pipelines, automated tested, performance testing, unit tests, or docker containers or orchestrators/cluster, NFR, iterative development approaches."
+
+## Case #2
+We need internal developers platform/portal and AI because that might save us from poor engineering practices, no architecture review process, wack-a-mole approach to security. But we still do not maintain IaC terraform modules centrally, we have no SSO in AWS org, we do not have standards,not even minimum observability requirements, SLO/SLI, no deployment stats collections, no platform team, no standard for CI/CD and QA, we use only AWS ECS and believe k8s is too complex for our use-case"
 
 
 ## Levels 0 - 6 
